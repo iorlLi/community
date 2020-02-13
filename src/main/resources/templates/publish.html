@@ -6,6 +6,7 @@
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/bootstrap-theme.min.css">
     <script src="js/bootstrap.min.js" type="application/javascript"></script>
+    <link rel="stylesheet" href="css/community.css">
 
 
 </head>
@@ -44,5 +45,33 @@
         </div>
     </div>
 </nav>
+<div class="container-fluid main">
+    <div class="row">
+        <div class="col-lg-9 col-md-12 col-sm-12 col-xs-12">
+            <h2><span class="glyphicon glyphicon glyphicon-plus" aria-hidden="true"></span> 发布</h2>
+            <hr>
+            <form action="" method="pos">
+                <div class="form-group">
+                    <label for="title">问题标题(简单扼要):</label>
+                    <input type="text" class="form-control" id="title" name="title" placeholder="问题标题...">
+                </div>
+                <div class="form-group">
+                    <label for="description">问题补充(必填，参照右侧提示):</label>
+                    <textarea name="description" id="description" class="form-control" cols="30" rows="10"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="tag">添加标签:</label>
+                    <input type="text" class="form-control" id="tag" name="tag" placeholder="输入标签,以','隔开">
+                </div>
+                <button type="submit" class="btn btn-success btn-publish">发布</button>
+            </form>
+        </div>
+        <div class="col-lg-3 col-md-12 col-sm-12 col-xs-12">
+            问题发起指南:<br/>
+            1.1111<br/>
+            2.2222
+        </div>
+    </div>
+</div>
 </body>
 </html>
