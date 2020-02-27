@@ -22,8 +22,6 @@ public class GitHubProvider {
         try (Response response = client.newCall(request).execute()) {
             //提取出量： alt + enter
             String string = response.body().string();
-            System.out.println("life.majiang.community.community.provider.GitHubProvider.getAccessToken" + string);
-
             String accessToken = string.split("&")[0].split("=")[1];
             return accessToken;
         } catch (IOException e) {
@@ -39,6 +37,7 @@ public class GitHubProvider {
                 .build();
         try (Response response = client.newCall(request).execute()) {
             GithubUser githubUser = JSON.parseObject(response.body().string(), GithubUser.class);
+            System.out.println(githubUser.toString());
             return githubUser;
         } catch (IOException e) {
         }

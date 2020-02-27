@@ -1,40 +1,28 @@
 package life.majiang.community.community.controller;
 
-import life.majiang.community.community.mapper.UserMapper;
-import life.majiang.community.community.model.User;
+import life.majiang.community.community.dto.PaginationDTO;
+import life.majiang.community.community.service.QuestionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-
-import javax.servlet.http.Cookie;
-import javax.servlet.http.HttpServletRequest;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class IndexController {
+
     @Autowired
-    private UserMapper userMapper;
+    private QuestionService questionService;
 
     @GetMapping("/")
-    public String index(HttpServletRequest request) {
-        System.out.println("index:step1---------------");
-        Cookie[] cookies = request.getCookies();
-        User user =null;
-        if (cookies != null && cookies.length > 0) {
-            for (Cookie cookie : cookies) {
-                if ("token".equals(cookie.getName())) {
-                    String token = cookie.getValue();
-                    user = userMapper.selectByToken(token);
-                    System.out.println("index:token = " + token);
-                    if (user != null) {
-                        System.out.println(user.toString());
-                        request.getSession().setAttribute("user", user);
-                    }
-                }
-            }
-        }
-        if(user == null){
-            System.out.println("no login");
-        }
+    public String index(Model model,
+                        @RequestParam(name = "page", defaultValue = "1") Integer page,
+                        @RequestParam(name = "size", defaultValue = "2") Integer size) {
+
+        //加载问题列表
+        PaginationDTO paginationDTO = questionService.list(page, size);
+
+        model.addAttribute("pagination", paginationDTO);
         return "index";
     }
 
