@@ -3,11 +3,11 @@
 <head>
     <title>码匠社区</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-    <link rel="stylesheet" href="css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/bootstrap-theme.min.css">
-    <link rel="stylesheet" href="css/community.css">
-    <script src="js/jquery-3.4.1.min.js"></script>
-    <script src="js/bootstrap.min.js" type="application/javascript"></script>
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="/css/community.css">
+    <script src="/js/jquery-3.4.1.min.js"></script>
+    <script src="/js/bootstrap.min.js" type="application/javascript"></script>
 
 
 </head>
@@ -35,7 +35,7 @@
                 </div>
             </div>
             <nav aria-label="Page navigation">
-                <ul class="pagination">
+                <ul class="pagination" th:if="${pagination.questions.size()} > 0">
                     <!--第一页-->
                     <li th:if="${pagination.showFirstPage}">
                         <a th:href="@{/(page=1)}">

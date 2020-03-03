@@ -3,3 +3,9 @@
 [oauth](https://developer.github.com/apps/building-oauth-apps/authorizing-oauth-apps/)  
 
 [okhttp](https://square.github.io/okhttp/)
+
+
+````
+mvn -Dmybatis.generator.overwrite=true mybatis-generator:generate
+
+````

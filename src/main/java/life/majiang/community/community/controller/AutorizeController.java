@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.UUID;
 
 @Controller
@@ -39,6 +41,10 @@ public class AutorizeController {
                            @RequestParam(name = "state") String state,
                            HttpServletRequest request,
                            HttpServletResponse response) {
+        DateTimeFormatter dtf2 = DateTimeFormatter.ofPattern("yyyy年MM月dd日 HH:mm:ss");
+        LocalDateTime ldt = LocalDateTime.now();
+        String strDate2 = dtf2.format(ldt);
+        System.out.println("调用时间: " + strDate2);
         //Ctrl+Alt+V 类似 eclipse ctrl + 1
         AccessTokenDTO accessTokenDTO = new AccessTokenDTO();
         accessTokenDTO.setClient_id(clientId);
