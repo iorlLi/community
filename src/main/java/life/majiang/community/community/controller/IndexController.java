@@ -14,10 +14,11 @@ public class IndexController {
     @Autowired
     private QuestionService questionService;
 
+    private String size;
     @GetMapping("/")
     public String index(Model model,
                         @RequestParam(name = "page", defaultValue = "1") Integer page,
-                        @RequestParam(name = "size", defaultValue = "2") Integer size) {
+                        @RequestParam(name = "size", defaultValue = "5") Integer size) {
 
         //加载问题列表
         PaginationDTO paginationDTO = questionService.list(page, size);

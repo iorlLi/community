@@ -15,8 +15,8 @@
 <div th:insert="navigation :: nav"></div>
 <div class="jumbotron">
     <h1>出错了!</h1>
-    <p th:text="error"></p>
-    <p><a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a></p>
+    <p th:text="${message}">默认错误页面</p>
+    <p><a class="btn btn-primary btn-lg" href="/" role="button">返回主页</a></p>
 </div>
 </body>
 </html>
