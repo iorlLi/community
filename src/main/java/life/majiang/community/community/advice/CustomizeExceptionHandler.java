@@ -13,8 +13,6 @@ public class CustomizeExceptionHandler {
     //    HttpStatus status = getStatus(request);
         if(ex instanceof CustomizeException){
             model.addAttribute("message", ex.getMessage());
-        }else{
-            model.addAttribute("message", "来自后台的错误!");
         }
         return new ModelAndView("error");
     }
