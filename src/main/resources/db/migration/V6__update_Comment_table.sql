@@ -1,0 +1,1 @@
+alter table COMMENT alter column CONTENT VARCHAR(1024);
