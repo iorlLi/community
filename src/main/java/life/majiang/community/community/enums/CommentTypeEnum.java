@@ -9,11 +9,11 @@ public enum CommentTypeEnum {
     QUESTION(1),
     COMMENT(2);
 
-    private Integer code;
+    private Integer type;
 
     public static boolean isNotExit(Integer type) {
         for (CommentTypeEnum value : CommentTypeEnum.values()) {
-            if (value.getCode() == type) {
+            if (value.getType() == type) {
                 return false;
             }
         }
@@ -22,18 +22,18 @@ public enum CommentTypeEnum {
 
     public static boolean isExit(Integer type) {
         for (CommentTypeEnum value : CommentTypeEnum.values()) {
-            if (value.getCode() == type) {
+            if (value.getType() == type) {
                 return true;
             }
         }
         return false;
     }
 
-    public Integer getCode() {
-        return code;
+    public Integer getType() {
+        return type;
     }
 
     CommentTypeEnum(Integer code) {
-        this.code = code;
+        this.type = code;
     }
 }

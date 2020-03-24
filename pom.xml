@@ -116,6 +116,7 @@
                     <url>jdbc:h2:C:\\h2\\community4</url>
                     <user>iorl</user>
                     <password>Iorl123456</password>
+                    <schemas>PUBLIC</schemas>
                 </configuration>
                 <dependencies>
                     <dependency>

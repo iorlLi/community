@@ -2,7 +2,12 @@ package life.majiang.community.community.mapper;
 
 import life.majiang.community.community.model.Question;
 
-public interface QuestionExcMapper {
+public interface QuestionExtMapper {
 
     int incView(Question record);
+
+    int incComment(Question record);
+
+
+
 }

@@ -4,7 +4,7 @@ import life.majiang.community.community.dto.PaginationDTO;
 import life.majiang.community.community.dto.QuestionDTO;
 import life.majiang.community.community.exception.CustomizeErrorCode;
 import life.majiang.community.community.exception.CustomizeException;
-import life.majiang.community.community.mapper.QuestionExcMapper;
+import life.majiang.community.community.mapper.QuestionExtMapper;
 import life.majiang.community.community.mapper.QuestionMapper;
 import life.majiang.community.community.mapper.UserMapper;
 import life.majiang.community.community.model.Question;
@@ -25,7 +25,7 @@ public class QuestionService {
     @Autowired
     private QuestionMapper questionMapper;
     @Autowired
-    private QuestionExcMapper questionExcMapper;
+    private QuestionExtMapper questionExcMapper;
 
     public PaginationDTO list(Integer page, Integer size) {
         List<QuestionDTO> questionDTOS = new ArrayList<>();
@@ -54,7 +54,7 @@ public class QuestionService {
         return paginationDTO;
     }
 
-    public PaginationDTO getByUserId(Integer id, Integer page, Integer size) {
+    public PaginationDTO getByUserId(Long id, Integer page, Integer size) {
         List<QuestionDTO> questionDTOS = new ArrayList<>();
         PaginationDTO paginationDTO = new PaginationDTO();
 
@@ -84,7 +84,7 @@ public class QuestionService {
         return paginationDTO;
     }
 
-    public QuestionDTO getById(Integer id) {
+    public QuestionDTO getById(Long id) {
         Question question = questionMapper.selectByPrimaryKey(id);
         if (question == null) {
             throw new CustomizeException(CustomizeErrorCode.QUESTION_NOT_FOUND);
@@ -103,6 +103,9 @@ public class QuestionService {
         if (question.getId() == null) {
             question.setGmtCreate(System.currentTimeMillis());
             question.setGmtModified(System.currentTimeMillis());
+            question.setViewCount(0);
+            question.setLikeCount(0);
+            question.setCommentCount(0);
             questionMapper.insert(question);
         } else {
             Question question1 = new Question();
@@ -121,7 +124,7 @@ public class QuestionService {
         }
     }
 
-    public void incView(Integer id) {
+    public void incView(Long id) {
         //打印出sql比较，使用question和updateQuestion更新的区别
 
         Question question = new Question();
