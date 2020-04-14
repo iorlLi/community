@@ -10,12 +10,14 @@ import life.majiang.community.community.model.Comment;
 import life.majiang.community.community.model.Question;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  * @author iorlLi
  * @version 1.0
  * @date 2020/3/9 22:55
  */
+@Transactional
 @Service
 public class CommentService {
     @Autowired
@@ -24,23 +26,24 @@ public class CommentService {
     private QuestionMapper questionMapper;
     @Autowired
     private QuestionExtMapper questionExtMapper;
-    public  void insert(Comment comment) {
-        if(comment.getId()== null || comment.getId() == 0){
+
+    public void insert(Comment comment) {
+        if (comment.getpId() == null || comment.getpId() == 0) {
             throw new CustomizeException(CustomizeErrorCode.TARGET_NOT_FOUND);
         }
-        if(comment.getType() == null || CommentTypeEnum.isNotExit(comment.getType())){
-            throw new CustomizeException(CustomizeErrorCode.TARGET_NOT_FOUND);
+        if (comment.getType() == null || CommentTypeEnum.isNotExit(comment.getType())) {
+            throw new CustomizeException(CustomizeErrorCode.TYPE_WRONG);
         }
-        
-        if(comment.getType() == CommentTypeEnum.COMMENT.getType()){
+
+        if (comment.getType() == CommentTypeEnum.COMMENT.getType()) {
             Comment dbComment = commentMapper.selectByPrimaryKey(comment.getId());
-            if(dbComment == null){
+            if (dbComment == null) {
                 throw new CustomizeException(CustomizeErrorCode.COMMENT_NOT_FOUND);
             }
             commentMapper.insert(comment);
-        }else{
-            Question dbQuestion = questionMapper.selectByPrimaryKey(comment.getId());
-            if(dbQuestion == null){
+        } else {
+            Question dbQuestion = questionMapper.selectByPrimaryKey(comment.getpId());
+            if (dbQuestion == null) {
                 throw new CustomizeException(CustomizeErrorCode.QUESTION_NOT_FOUND);
             }
             dbQuestion.setCommentCount(1);

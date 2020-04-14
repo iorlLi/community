@@ -29,7 +29,7 @@ public class ResultDTO {
         return errof(e.getCode(), e.getMessage());
     }
 
-    public static ResultDTO eokof(ICustomizeErrorCode iCustomizeErrorCode) {
+    public static ResultDTO okof() {
         ResultDTO resultDTO = new ResultDTO();
         resultDTO.setCode(200);
         resultDTO.setMessage("sucess");

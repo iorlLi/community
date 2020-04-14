@@ -8,5 +8,5 @@ import org.springframework.stereotype.Component;
 public class CommentDTO {
     private String content;
     private Long parentId;
-    private int type;
+    private Integer type;
 }

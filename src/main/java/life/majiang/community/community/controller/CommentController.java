@@ -4,7 +4,6 @@ import life.majiang.community.community.dto.CommentDTO;
 import life.majiang.community.community.dto.ResultDTO;
 import life.majiang.community.community.model.Comment;
 import life.majiang.community.community.model.User;
-import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -28,12 +27,14 @@ public class CommentController {
             return ResultDTO.errof(2002, "登陆后进行评论");
         }
         Comment comment = new Comment();
-        BeanUtils.copyProperties(commentDTO, comment);
+        comment.setpId(commentDTO.getParentId());
+        comment.setType(commentDTO.getType());
+        comment.setContent(commentDTO.getContent());
         comment.setGmtCreate(System.currentTimeMillis());
+        comment.setGmtModified(System.currentTimeMillis());
         commentService.insert(comment);
 
 
-
-        return null;
+        return ResultDTO.okof();
     }
 }

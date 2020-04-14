@@ -5,7 +5,7 @@ import lombok.Data;
 
 @Data
 public class QuestionDTO {
-    private Integer id;
+    private Long id;
     private String title;
     private String description;
     private Long gmtCreate;
@@ -14,7 +14,7 @@ public class QuestionDTO {
     private Integer commentCount;
     private Integer likeCount;
     private String tag;
-    private Integer creator;
+    private Long creator;
 
     private User user;
 
